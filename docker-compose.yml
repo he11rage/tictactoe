@@ -1,0 +1,25 @@
+version: '3'
+services:
+  client:
+    build:
+      context: src\main\scala\
+      dockerfile: Dockerfile.client
+    ports:
+      - 8080:8080
+    networks:
+      - mynetwork
+  server:
+    build:
+      context: src\main\scala\
+      dockerfile: Dockerfile.server
+    networks:
+      - mynetwork
+  computer:
+    build:
+      context: src\main\scala\
+      dockerfile: Dockerfile.computer
+    networks:
+      - mynetwork
+
+networks:
+  mynetwork:

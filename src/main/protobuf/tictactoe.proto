@@ -1,0 +1,52 @@
+syntax = "proto3";
+
+package tictactoe;
+
+
+service TicTacToeBoard {
+    rpc getBoard (Nothing) returns (Boards) {};
+    rpc checkGameOver (Boards) returns (GameResult) {};
+}
+
+service TicTacToeClient {
+    rpc makePlayerMove (Move) returns (Boards) {};
+}
+
+service TicTacToeComputer {
+    rpc makeComputerMove (Boards) returns (Boards) {};
+}
+
+message Nothing {}
+
+message Boards {
+    repeated Row rows = 1;
+}
+
+message Row {
+    repeated TicTacSymbols symbols = 1;
+}
+
+enum TicTacSymbols {
+    Empty = 0;
+    X = 1;
+    O = 2;
+}
+
+message Move {
+    int32 row = 1;
+    int32 column = 2;
+    TicTacSymbols symbol = 3;
+    Player player = 4;
+    Boards board = 5;
+}
+
+enum Player {
+    PLAYER = 0;
+    COMPUTER = 1;
+}
+
+message GameResult {
+    bool gameOver = 1;
+    TicTacSymbols winner = 2;
+    Boards boards = 3;
+}

@@ -1,0 +1,7 @@
+FROM openjdk:20
+
+WORKDIR /Client
+
+COPY Client /Client
+
+CMD sbt "runMain Client.Client"

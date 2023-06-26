@@ -1,0 +1,7 @@
+FROM openjdk:20
+
+WORKDIR /Server
+
+COPY Server /Server
+
+CMD sbt "runMain Server.TicTacToeServer"
